@@ -1,10 +1,8 @@
-/* CSS class to make a paragraph bold and red */
 .highlight {
     font-weight: bold;
     color: red;
 }
 
-/* CSS ID to make the heading background yellow and centered */
 #special {
     background-color: yellow;
     text-align: center;
