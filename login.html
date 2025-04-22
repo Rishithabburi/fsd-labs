@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hostel Login</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background-color: #0a192f;
+    }
+    
+    /* Animated gradient background */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #0a192f 0%, #0d2341 50%, #0c1f36 100%);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      z-index: -2;
+    }
+    
+    @keyframes gradientBG {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+    
+    .light-particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      overflow: hidden;
+    }
+    
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      animation: float 15s infinite linear;
+    }
+    
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) translateX(100px);
+        opacity: 0;
+      }
+    }
+    
+    .container {
+      display: flex;
+      width: 900px;
+      height: 550px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      border-radius: 12px;
+      overflow: hidden;
+      background-color: white;
+    }
+    
+    .image-container {
+      flex: 1;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      background-color: #0a192f;
+    }
+    
+    .image-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600" viewBox="0 0 900 600"><rect width="900" height="600" fill="%23051126"/><path d="M0 208L21.5 201C43 194 86 180 128.8 193.2C171.7 206.3 214.3 246.7 257.2 243.2C300 239.7 343 192.3 385.8 180.3C428.7 168.3 471.3 191.7 514.2 201.7C557 211.7 600 208.3 642.8 208.3C685.7 208.3 728.3 211.7 771.2 211.8C814 212 857 209 878.5 207.5L900 206L900 0L878.5 0C857 0 814 0 771.2 0C728.3 0 685.7 0 642.8 0C600 0 557 0 514.2 0C471.3 0 428.7 0 385.8 0C343 0 300 0 257.2 0C214.3 0 171.7 0 128.8 0C86 0 43 0 21.5 0L0 0Z" fill="%230d2341" stroke="none"/><path d="M0 508L21.5 492.7C43 477.3 86 446.7 128.8 428.5C171.7 410.3 214.3 404.7 257.2 401.8C300 399 343 399 385.8 416.5C428.7 434 471.3 469 514.2 470.2C557 471.3 600 438.7 642.8 422.7C685.7 406.7 728.3 407.3 771.2 409.3C814 411.3 857 414.7 878.5 416.3L900 418L900 204L878.5 205.5C857 207 814 210 771.2 209.8C728.3 209.7 685.7 206.3 642.8 206.3C600 206.3 557 209.7 514.2 199.7C471.3 189.7 428.7 166.3 385.8 178.3C343 190.3 300 237.7 257.2 241.2C214.3 244.7 171.7 204.3 128.8 191.2C86 178 43 192 21.5 199L0 206Z" fill="%23072052" stroke="none"/><path d="M0 601L21.5 601C43 601 86 601 128.8 601C171.7 601 214.3 601 257.2 601C300 601 343 601 385.8 601C428.7 601 471.3 601 514.2 601C557 601 600 601 642.8 601C685.7 601 728.3 601 771.2 601C814 601 857 601 878.5 601L900 601L900 416L878.5 414.3C857 412.7 814 409.3 771.2 407.3C728.3 405.3 685.7 404.7 642.8 420.7C600 436.7 557 469.3 514.2 468.2C471.3 467 428.7 432 385.8 414.5C343 397 300 397 257.2 399.8C214.3 402.7 171.7 408.3 128.8 426.5C86 444.7 43 475.3 21.5 490.7L0 506Z" fill="%230a192f" stroke="none"/></svg>') no-repeat center center/cover;
+      opacity: 0.9;
+      z-index: -1;
+    }
+    
+    .hostel-logo {
+      background-color: rgba(255, 255, 255, 0.1);
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .hostel-logo i {
+      font-size: 48px;
+      color: #64ffda;
+    }
+    
+    .welcome-text {
+      color: #ccd6f6;
+      font-size: 28px;
+      font-weight: 600;
+      text-align: center;
+      margin-top: 20px;
+    }
+    
+    .login-form {
+      flex: 1;
+      background-color: white;
+      padding: 50px 40px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .form-header {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    .form-header h1 {
+      color: #0a192f;
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    
+    .form-header p {
+      color: #555;
+      font-size: 14px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+      position: relative;
+    }
+    
+    .form-group label {
+      display: block;
+      color: #444;
+      margin-bottom: 8px;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+    }
+    
+    .input-with-icon {
+      position: relative;
+    }
+    
+    .input-with-icon i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #0a192f;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 12px 15px 12px 45px;
+      background-color: #f5f8ff;
+      border: 1px solid #e1e6f0;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      color: #0a192f;
+    }
+    
+    .form-control::placeholder {
+      color: #a0aec0;
+    }
+    
+    .form-control:focus {
+      border-color: #0a192f;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(10, 25, 47, 0.1);
+    }
+    
+    .remember-forgot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: #555;
+    }
+    
+    .remember {
+      display: flex;
+      align-items: center;
+    }
+    
+    .remember input {
+      margin-right: 8px;
+      accent-color: #0a192f;
+    }
+    
+    .forgot-link {
+      color: #0a192f;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      font-weight: 500;
+    }
+    
+    .forgot-link:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: -2px;
+      left: 0;
+      background-color: #0a192f;
+      transition: width 0.3s ease;
+    }
+    
+    .forgot-link:hover:after {
+      width: 100%;
+    }
+    
+    .btn-login {
+      background: #0a192f;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-login::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: all 0.6s ease;
+    }
+    
+    .btn-login:hover {
+      background: #0d2341;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(10, 25, 47, 0.3);
+    }
+    
+    .btn-login:hover::before {
+      left: 100%;
+    }
+    
+    .btn-login i {
+      margin-left: 8px;
+      transition: transform 0.3s ease;
+    }
+    
+    .btn-login:hover i {
+      transform: translateX(5px);
+    }
+    
+    .register-link {
+      text-align: center;
+      font-size: 14px;
+      color: #555;
+    }
+    
+    .register-link a {
+      color: #0a192f;
+      text-decoration: none;
+      font-weight: 600;
+      position: relative;
+    }
+    
+    .register-link a:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: -2px;
+      left: 0;
+      background-color: #0a192f;
+      transition: width 0.3s ease;
+    }
+    
+    .register-link a:hover:after {
+      width: 100%;
+    }
+    
+    .social-login {
+      margin-top: 30px;
+      text-align: center;
+    }
+    
+    .social-login p {
+      position: relative;
+      margin-bottom: 20px;
+      color: #555;
+      font-size: 14px;
+    }
+    
+    .social-login p::before,
+    .social-login p::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 30%;
+      height: 1px;
+      background-color: #e1e6f0;
+    }
+    
+    .social-login p::before {
+      left: 0;
+    }
+    
+    .social-login p::after {
+      right: 0;
+    }
+    
+    .social-icons {
+      display: flex;
+      justify-content: center;
+    }
+    
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #f5f8ff;
+      border: 1px solid #e1e6f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .social-icon:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      background-color: #0a192f;
+    }
+    
+    .social-icon:hover i {
+      color: white;
+    }
+    
+    .social-icon i {
+      color: #0a192f;
+      font-size: 18px;
+      transition: all 0.3s ease;
+    }
+    
+    @media (max-width: 900px) {
+      .container {
+        width: 95%;
+        flex-direction: column;
+        height: auto;
+      }
+      
+      .image-container {
+        height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated particles -->
+  <div class="light-particles">
+    <script>
+      // Create particles
+      for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Random positioning
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        const size = Math.random() * 3 + 1;
+        const animationDuration = Math.random() * 20 + 10;
+        const delay = Math.random() * 5;
+        
+        particle.style.left = `${x}%`;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.opacity = Math.random() * 0.5;
+        particle.style.animationDuration = `${animationDuration}s`;
+        particle.style.animationDelay = `${delay}s`;
+        
+        document.querySelector('.light-particles').appendChild(particle);
+      }
+    </script>
+  </div>
+
+  <div class="container">
+    <div class="image-container">
+      <div class="hostel-logo">
+        <i class="fas fa-hotel"></i>
+      </div>
+      <div class="welcome-text">Welcome To Our Hostel</div>
+    </div>
+    
+    <div class="login-form">
+      <div class="form-header">
+        <h1>Welcome Back</h1>
+        <p>Enter your credentials to access your account</p>
+      </div>
+      
+      <form action="home.html" method="get">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <div class="input-with-icon">
+            <i class="fas fa-user"></i>
+            <input type="text" id="username" name="username" class="form-control" placeholder="Enter your username" required>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-with-icon">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required>
+          </div>
+        </div>
+        
+        <div class="remember-forgot">
+          <div class="remember">
+            <input type="checkbox" id="remember" name="remember">
+            <label for="remember">Remember me</label>
+          </div>
+          <a href="forget.html" class="forgot-link">Forgot Password?</a>
+        </div>
+        
+        <button type="submit" class="btn-login">Sign In <i class="fas fa-arrow-right"></i></button>
+        
+        <div class="register-link">
+          Don't have an account? <a href="register.html">Sign up now</a>
+        </div>
+      </form>
+      
+      <div class="social-login">
+        <p>Or continue with</p>
+        <div class="social-icons">
+          <div class="social-icon">
+            <i class="fab fa-google"></i>
+          </div>
+          <div class="social-icon">
+            <i class="fab fa-facebook-f"></i>
+          </div>
+          <div class="social-icon">
+            <i class="fab fa-apple"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

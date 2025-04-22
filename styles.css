@@ -1,14 +1,113 @@
-
 body {
-    background-color: lightblue;
-}
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  
+  .navbar {
+    background-color: #2d3e50;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar .logo {
+    color: #fff;
+    font-size: 1.5rem;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-links li a:hover {
+    color: #00bcd4;
+  }
+  
+  .hero {
+    position: relative;
+    text-align: center;
+    padding: 100px 20px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5 )),
+                      url('https://img.freepik.com/free-vector/student-bedroom-dormitory-night-with-bunk-bed-desk-chair_88138-1039.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+  }
+  
+  .hero .cta-button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    background-color: #fff;
+    color: #0097a7;
+    border: none;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+  }
+  .grow {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: rgb(255, 240, 243);
+  }
 
-h2 {
-    color: green;
-    text-decoration: underline;
-}
+  .features{
+    padding: 60px 20px;
+    text-align: center;
+    background-color: rgb(251, 240, 255);
+  }
+  
 
-p {
-    font-size: 18px;
-    color: darkgray;
-}
+  .glow {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: azure;
+  }
+  
+  .feature-cards {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 30px;
+  }
+  
+  .card {
+    background: white;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    width: 200px;
+  }
+  
+  footer {
+    background-color: #2d3e50;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+
+  .login-button {
+    padding: 8px 16px;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-button:hover {
+    background-color: #0056b3;
+  }
+  

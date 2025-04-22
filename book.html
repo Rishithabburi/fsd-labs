@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book a Room | SRKR Boys Hostel</title>
+  <link rel="stylesheet" href="book.css"/>
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">SRKR Boys Hostel</div>
+      <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="index.html">Dashboard</a></li>
+        <li><a href="room.html">Rooms</a></li>
+        <li><a href="student.html">Student</a></li>
+        <li><a href="images.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="book-section">
+    <h2 data-aos="fade-up">Book a Room</h2>
+    <form class="booking-form" data-aos="zoom-in">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter your full name" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required />
+
+      <label for="roomType">Room Type</label>
+      <select id="roomType" name="roomType" required>
+        <option value="">-- Select --</option>
+        <option value="Single">Single Room</option>
+        <option value="Double">Double Room</option>
+        <option value="AC">AC Room</option>
+        <option value="Non-AC">Non-AC Room</option>
+      </select>
+
+      <label for="date">Check-in Date</label>
+      <input type="date" id="date" name="date" required />
+
+      <button type="submit" class="submit-btn">Confirm Booking</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 SRKR Boys Hostel. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+.dashboard {
+    text-align: center;
+    padding: 60px 20px;
+    background-image: url('');
+  }
+  
+  .dashboard-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 40px;
+  }
+  
+  .dashboard-card {
+    background: #ffffff;
+    padding: 2rem;
+    width: 200px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    text-decoration: none;
+    color: #0097a7;
+    font-weight: bold;
+    transition: transform 0.3s ease, background-color 0.3s;
+  }
+  
+  .dashboard-card:hover {
+    transform: translateY(-5px);
+    background-color: #e0f7fa;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  
+  .navbar {
+    background-color: #2d3e50;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar .logo {
+    color: #fff;
+    font-size: 1.5rem;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-links li a:hover {
+    color: #00bcd4;
+  }
+  
+  .room-section {
+    padding: 100px 20px;
+    text-align: center;
+  }
+  
+  .room-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 40px;
+  }
+  
+  .room-card {
+    background: #fff;
+    padding: 1rem;
+    width: 450px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .room-card img {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom:5px;
+  }
+  
+
+  .location {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+  }
+  
+  .location h2 {
+    color: #0097a7;
+    margin-bottom: 10px;
+  }
+  
+  .map-container {
+    max-width: 900px;
+    margin: 30px auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  }
+  
