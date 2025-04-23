@@ -1,12 +1,25 @@
 body {
-  background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20220428/pngtree-hostel-cartoon-flat-illustration-room-image_1110131.jpg');
+  position: relative;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  background-image: url('https://media.istockphoto.com/id/1305941834/photo/clean-bedroom-with-bunk-beds-in-a-hotel-a-hostel-for-tourists.jpg?s=612x612&w=0&k=20&c=NVi25PfHvevfzNyRaB7z_TON8vyrgwL0VrqtLbd6lhs=');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  opacity: 0.4; /* Adjust transparency here */
 }
 
 
