@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hostel Washing Machine Booking</title>
+  <style>
+       header {
+            color:#32a4a8;
+      padding: 15px;
+      text-align: center;
+    }
+   body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  margin: 0;
+  padding: 0;
+  background-image: url('https://png.pngtree.com/thumb_back/fw800/background/20240408/pngtree-close-up-laundry-washing-machine-in-home-health-care-lifestyle-concept-image_15650830.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100vh;
+}
+
+.container {
+  padding: 20px;
+  max-width: 500px;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.9); /* slightly transparent for readability */
+  margin-top: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+    input, select, button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .page {
+      display: none;
+    }
+    .active {
+      display: block;
+    }
+    .member-container {
+      margin-bottom: 20px;
+    }
+    .message {
+      color: red;
+      font-weight: bold;
+    }
+    .details-list {
+      margin-top: 20px;
+    }
+    .details-list table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .details-list table, th, td {
+      border: 1px solid #ddd;
+    }
+    .details-list th, td {
+      padding: 10px;
+      text-align: left;
+    }
+marquee{
+background-color:white;
+}
+  
+  .navbar {
+    background-color: #2d3e50;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar .logo {
+    color: #fff;
+    font-size: 1.5rem;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-links li a:hover {
+    color: #00bcd4;
+  }
+  
+
+
+  </style>
+
+    <nav class="navbar">
+      <div class="logo">SRKR Boys Hostel</div>
+      <ul class="nav-links">
+        <li><a href="login.html" class="login-button">Login</a></li>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="index.html">Dashboard</a></li>
+        <li><a href="room.html">Rooms</a></li>
+        <li><a href="book.html">Book</a></li>
+        <li><a href="student.html">Student</a></li>
+        <li><a href="mechine.html">Washing machine Booking</a></li>
+        <li><a href="images.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+</head>
+<body>
+
+<header><marquee>
+  <h1>Hostel Washing Machine Booking</h1></marquee>
+</header>
+
+<div class="container">
+  <!-- Page 1: Booking Form -->
+  <div id="bookingPage" class="page active">
+    <h2>Book Washing Machine</h2>
+    
+    <div id="memberForm">
+      <h3>Member 1</h3>
+      <label for="name">Name:</label>
+      <input type="text" id="name" required>
+      
+      <label for="hostel">Hostel:</label>
+      <select id="hostel">
+        <option value="Hostel A">Hostel A</option>
+        <option value="Hostel B">Hostel B</option>
+        <option value="Hostel C">Hostel C</option>
+      </select>
+
+      <label for="machine">Washing Machine:</label>
+      <select id="machine">
+        <option value="Machine 1">Machine 1</option>
+        <option value="Machine 2">Machine 2</option>
+        <option value="Machine 3">Machine 3</option>
+      </select>
+
+      <label for="time">Time Slot:</label>
+      <input type="time" id="time">
+    </div>
+
+    <button onclick="submitBooking()">Book Now</button>
+    <div id="limitMessage" class="message" style="display: none;">You have reached the maximum number of members (3). Please proceed to the confirmation page.</div>
+    <div id="timeConflictMessage" class="message" style="display: none;">The selected time slot for this machine is already booked. Please choose another time slot.</div>
+  </div>
+
+  <!-- Display all the booked members' details immediately -->
+  <div class="details-list">
+    <h3>Booked Members</h3>
+    <table id="bookingDetailsTable">
+      <thead>
+        <tr>
+          <th>Member</th>
+          <th>Name</th>
+          <th>Hostel</th>
+          <th>Machine</th>
+          <th>Time Slot</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <!-- Page 2: Confirmation Page -->
+  <div id="confirmationPage" class="page">
+    <h2>Booking Confirmed!</h2>
+    <div id="bookingDetails"></div>
+    <button onclick="goBack()">Back to Booking</button>
+  </div>
+</div>
+
+<script>
+  let memberCount = 0;
+  let bookings = [];
+
+  function submitBooking() {
+    // Get member details from input fields
+    const name = document.getElementById("name").value;
+    const hostel = document.getElementById("hostel").value;
+    const machine = document.getElementById("machine").value;
+    const time = document.getElementById("time").value;
+
+    // Check if all fields are filled
+    if (!name || !time) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    // Check if member limit is exceeded
+    if (memberCount >= 3) {
+      document.getElementById("limitMessage").style.display = 'block';
+      return;
+    }
+
+    // Check if the selected time slot for the chosen machine is already booked
+    const timeConflict = bookings.some(booking => booking.machine === machine && booking.time === time);
+
+    if (timeConflict) {
+      document.getElementById("timeConflictMessage").style.display = 'block';
+      return;
+    } else {
+      document.getElementById("timeConflictMessage").style.display = 'none';
+    }
+
+    // Store the booking details
+    bookings.push({ name, hostel, machine, time });
+    memberCount++;
+
+    // Clear form inputs for the next member
+    document.getElementById("name").value = '';
+    document.getElementById("time").value = '';
+
+    // Update the table with new booking
+    updateBookingDetailsTable();
+
+    // If 3 members have booked, show confirmation page
+    if (memberCount === 3) {
+      showConfirmationPage();
+    } else {
+      showNextMemberForm();
+    }
+  }
+
+  function showNextMemberForm() {
+    // Switch to the next member's form automatically
+    document.getElementById("bookingPage").classList.remove("active");
+    document.getElementById("limitMessage").style.display = 'none';
+    document.getElementById("timeConflictMessage").style.display = 'none';
+
+    // Update form for next member
+    if (memberCount === 1) {
+      document.querySelector("#memberForm h3").textContent = "Member 2";
+    } else if (memberCount === 2) {
+      document.querySelector("#memberForm h3").textContent = "Member 3";
+    }
+    
+    // Show the form for the next member
+    document.getElementById("bookingPage").classList.add("active");
+  }
+
+  function showConfirmationPage() {
+    // Create the confirmation details
+    let bookingDetailsHTML = '';
+    bookings.forEach((booking, index) => {
+      bookingDetailsHTML += ` 
+        <p><strong>Member ${index + 1}:</strong></p>
+        <p>Name: ${booking.name}</p>
+        <p>Hostel: ${booking.hostel}</p>
+        <p>Machine: ${booking.machine}</p>
+        <p>Time Slot: ${booking.time}</p>
+        <hr>
+      `;
+    });
+
+    // Display the confirmation page
+    document.getElementById("bookingDetails").innerHTML = bookingDetailsHTML;
+    document.getElementById("bookingPage").classList.remove("active");
+    document.getElementById("confirmationPage").classList.add("active");
+  }
+
+  function goBack() {
+    // Reset the form and go back to the booking page
+    memberCount = 0;
+    bookings = [];
+    document.getElementById("limitMessage").style.display = 'none';
+    document.getElementById("timeConflictMessage").style.display = 'none';
+    document.querySelector("#memberForm h3").textContent = "Member 1";
+    showNextMemberForm();
+  }
+
+  function updateBookingDetailsTable() {
+    const tableBody = document.getElementById("bookingDetailsTable").getElementsByTagName("tbody")[0];
+    // Clear existing table rows
+    tableBody.innerHTML = "";
+
+    // Add new rows for each booking
+    bookings.forEach((booking, index) => {
+      const row = tableBody.insertRow();
+      row.innerHTML = `
+        <td>Member ${index + 1}</td>
+        <td>${booking.name}</td>
+        <td>${booking.hostel}</td>
+        <td>${booking.machine}</td>
+        <td>${booking.time}</td>
+      `;
+    });
+  }
+</script>
+
+</body>
+</html>
