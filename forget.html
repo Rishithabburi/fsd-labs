@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Your existing head content remains unchanged -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Forgot Password</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    /* Your existing CSS styles remain unchanged */
     * {
       margin: 0;
       padding: 0;
@@ -530,6 +532,7 @@
     }
   </style>
 </head>
+
 <body>
   <!-- Animated particles -->
   <div class="light-particles">
@@ -699,13 +702,16 @@
       }
     }
     
-    // Send OTP Button Click
+    // Send OTP Button Click - Modified to show alert
     sendOtpBtn.addEventListener('click', function() {
       const email = document.getElementById('email').value;
       if (!email) {
         alert('Please enter your email address');
         return;
       }
+      
+      // Show OTP generation alert
+      alert('OTP has been generated and sent to your email: ' + email);
       
       // Simulate sending OTP
       emailFormContainer.classList.remove('visible');
@@ -808,7 +814,7 @@
       step2.classList.remove('completed');
     });
     
-    // Resend OTP Button Click
+    // Resend OTP Button Click// Resend OTP Button Click
     resendOtpBtn.addEventListener('click', function() {
       // Simulate resending OTP
       startCountdown();
@@ -818,4 +824,36 @@
     // Countdown Timer
     function startCountdown() {
       let timeLeft = 120; // 2 minutes in seconds
-      const countdownElement = document.getElementByI
+      const countdownElement = document.getElementById('countdown');
+      resendOtpBtn.style.pointerEvents = 'none';
+      resendOtpBtn.style.opacity = '0.5';
+      
+      // Update the countdown every second
+      const countdownInterval = setInterval(function() {
+        timeLeft--;
+        
+        // Format time as MM:SS
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        
+        countdownElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        
+        if (timeLeft <= 0) {
+          // Stop the countdown
+          clearInterval(countdownInterval);
+          countdownElement.textContent = '00:00';
+          
+          // Enable resend button
+          resendOtpBtn.style.pointerEvents = 'auto';
+          resendOtpBtn.style.opacity = '1';
+        }
+      }, 1000);
+    }
+    
+    // Generate random OTP for demonstration
+    function generateOTP() {
+      return Math.floor(1000 + Math.random() * 9000); // 4-digit number
+    }
+  </script>
+</body>
+</html>
